@@ -31,7 +31,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
         whileHover={{ y: -10 }}
         transition={{ type: "spring", stiffness: 300 }}
       >
-        <Card2 className="overflow-hidden h-full flex flex-col">
+        <Card2 className="overflow-hidden h-full flex flex-col max-w-[98%] md:max-w-[95%]">
           <div className="relative overflow-hidden">
             <motion.div
               whileHover={{ scale: 1.05 }}

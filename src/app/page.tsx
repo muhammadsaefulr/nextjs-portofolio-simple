@@ -12,10 +12,12 @@ import ProjectCard from "@/components/custom/project-card"
 import FloatingNav from "@/components/custom/floatingnav"
 import { Card2, Card2Content } from "@/components/ui/card2"
 import Footer from "@/components/custom/footer"
+import LoaderAnimate from "@/components/custom/loader"
 
 export default function Portfolio() {
   const [darkMode, setDarkMode] = useState(false)
   const [sidebarOpen, setSidebarOpen] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     if (darkMode) {
@@ -24,6 +26,18 @@ export default function Portfolio() {
       document.documentElement.classList.remove("dark")
     }
   }, [darkMode])
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false)
+    }, 3000)
+
+    return () => clearTimeout(timer);
+  }, [])  
+
+  if(isLoading){
+    return <LoaderAnimate/>
+  }
 
   const projects = [
     {
@@ -91,8 +105,8 @@ export default function Portfolio() {
     { icon: Home, label: "Home", href: "#" },
     { icon: GraduationCap, label: "About", href: "#about" },
     { icon: Briefcase, label: "Experience", href: "#experience" },
-    { icon: Server, label: "Skills", href: "#skills" },
     { icon: FileJson, label: "Projects", href: "#projects" },
+    { icon: Server, label: "Skills", href: "#skills" },
     { icon: Mail, label: "Contact", href: "#contact" },
   ]
 
@@ -103,7 +117,7 @@ export default function Portfolio() {
       <nav className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-sm border-b md:hidden">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5 }}>
-            <h1 className="text-xl font-bold">Saepul</h1>
+            <h1 className="text-xl font-bold">Saeful</h1>
           </motion.div>
 
           <div className="flex items-center gap-4">
@@ -127,15 +141,12 @@ export default function Portfolio() {
                 Hi, I&apos;m Saeful <span className="inline-block animate-wave">👋</span>
               </h1>
               <p className="text-xl mb-8">
-                Junior software developer, passionate about building simply beautiful and useful products.
+                Junior Fullstack Developer, passionate about building simply beautiful and useful products.
               </p>
 
               <h2 className="text-2xl font-bold mt-12 mb-4">About</h2>
               <p className="text-muted-foreground mb-4">
                Im Intresting to build things that are useful and beautiful. I love to learn new things and build them. I also love to help people and make them happy.
-              </p>
-              <p className="text-muted-foreground mb-6">
-                
               </p>
 
               <div className="flex gap-4 mt-8">
@@ -200,9 +211,9 @@ export default function Portfolio() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.4 }}
               >
-                <h3 className="text-2xl font-bold mb-4">Full Stack Developer based in Bekasi, Indonesia</h3>
+                <h3 className="text-2xl font-bold mb-4">Fullstack Developer based in Bekasi, Indonesia</h3>
                 <p className="text-muted-foreground mb-6">
-                  I&apos;m a passionate developer with expertise in building modern web applications. With over 1 years of
+                  I&apos;m a passionate developer with experience in building modern web applications. With over 1 years of
                   experience, I&apos;ve worked on a variety of projects from data management website to Finance Software.
                 </p>
                 <p className="text-muted-foreground mb-6">
@@ -229,7 +240,7 @@ export default function Portfolio() {
         </div>
       </section>
 
-         <section id="experience" className="py-20">
+      <section id="experience" className="py-20">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0 }}
@@ -255,9 +266,9 @@ export default function Portfolio() {
                       viewport={{ once: true }}
                       transition={{ duration: 0.3, delay: index * 0.1 }}
                     >
-                      <Card2>
+                      <Card2 className="max-w-[98%] md:max-w-[95%]">
                         <Card2Content className="pt-6">
-                          <div className="flex justify-between items-start mb-2">
+                          <div className="flex justify-between items-start mb-2 gap-2">
                             <div>
                               <h4 className="font-bold">{job.role}</h4>
                               <p className="text-muted-foreground">{job.company}</p>
@@ -268,7 +279,7 @@ export default function Portfolio() {
                             </div>
                           </div>
                           <p className="text-sm text-muted-foreground mt-2">{job.description}</p>
-                          <div className="flex pt-3 gap-x-2">
+                          <div className="flex flex-wrap gap-2 pt-3">
                             {job.technologies.map((datas) => (
                              <Badge key={datas}>{datas}</Badge>
                             ))}
@@ -295,8 +306,8 @@ export default function Portfolio() {
                       viewport={{ once: true }}
                       transition={{ duration: 0.3, delay: index * 0.1 }}
                     >
-                      <Card2>
-                        <Card2Content className="pt-6">
+                    <Card2 className="max-w-[99%] md:max-w-[90%]">
+                      <Card2Content className="pt-6">
                           <div className="flex justify-between items-start mb-2">
                             <div>
                               <h4 className="font-bold">{edu.degree}</h4>
@@ -356,7 +367,7 @@ export default function Portfolio() {
           >
             <h2 className="text-3xl font-bold mb-12 text-center">Tech Stack</h2>
 
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+            <div className="grid grid-rows-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {[
                 {
                   name: "Docker",
@@ -374,7 +385,7 @@ export default function Portfolio() {
                   name: "Node.js",
                   icon: "logos:nodejs",
                   color: "#339933",
-                  description: "JavaScript runtime built on Chrome&apos;s V8 JavaScript engine",
+                  description: "JavaScript runtime built on Chrome V8 JavaScript engine",
                 },
                 {
                   name: "Java",
@@ -388,6 +399,48 @@ export default function Portfolio() {
                   color: "#6DB33F",
                   description: "Statically typed, compiled language with simple syntax and a rich standard library.",
                 },
+                {
+                  name: "Linux",
+                  icon: "uil:linux",
+                  color: "#FCC624",
+                  description: "Open-source Unix-like operating system kernel widely used in servers and development.",
+                },
+                {
+                  name: "PostgreSQL",
+                  icon: "logos:postgresql",
+                  color: "#336791",
+                  description: "Powerful, open-source object-relational database system.",
+                },
+                {
+                  name: "Express.js",
+                  icon: "lineicons:expressjs",
+                  color: "#000000",
+                  description: "Fast, unopinionated, minimalist web framework for Node.js.",
+                },
+                {
+                  name: "Bun",
+                  icon: "logos:bun",
+                  color: "#F7DF1E",
+                  description: "All-in-one JavaScript runtime that fast and optimized for performance.",
+                },
+                {
+                  name: "GitHub Actions",
+                  icon: "logos:github-actions",
+                  color: "#2088FF",
+                  description: "A CI/CD automation tool for building, testing, and deploying applications.",
+                },
+                {
+                  name: "Next.js",
+                  icon: "logos:nextjs",
+                  color: "#000000",
+                  description: "A React framework for building full-stack web applications with great UX.",
+                },
+                {
+                  name: "Tailwind CSS",
+                  icon: "devicon:tailwindcss",
+                  color: "#38B2AC",
+                  description: "A utility-first CSS framework for building modern and responsive UIs.",
+                }
               ].map((tech, index) => (
                 <motion.div
                   key={tech.name}
@@ -397,7 +450,7 @@ export default function Portfolio() {
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
                   <motion.div whileHover={{ y: -10 }} transition={{ type: "spring", stiffness: 300 }}>
-                    <Card2 className="overflow-hidden h-full">
+                    <Card2 className="overflow-hidden h-full max-w-[98%] md:max-w-[95%]">
                       <Card2Content className="pt-6">
                         <div
                           className="w-12 h-12 rounded-lg flex items-center justify-center mb-4"
