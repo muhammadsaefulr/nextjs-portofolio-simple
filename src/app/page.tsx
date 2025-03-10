@@ -1,9 +1,9 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { motion, useScroll, useTransform } from "framer-motion"
+import { motion } from "framer-motion"
 import { Icon } from "@iconify/react"
-import { Briefcase, FileJson, GraduationCap, Home, Leaf, Linkedin, Mail, Menu, Moon, Server, Sun, Github } from "lucide-react"
+import { Briefcase, FileJson, GraduationCap, Home, Linkedin, Mail, Menu, Moon, Server, Sun, Github } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -15,10 +15,7 @@ import Footer from "@/components/custom/footer"
 
 export default function Portfolio() {
   const [darkMode, setDarkMode] = useState(false)
-  const { scrollY } = useScroll()
   const [sidebarOpen, setSidebarOpen] = useState(false)
-  const opacity = useTransform(scrollY, [0, 200], [1, 0])
-  const y = useTransform(scrollY, [0, 200], [0, -50])
 
   useEffect(() => {
     if (darkMode) {
@@ -127,7 +124,7 @@ export default function Portfolio() {
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
               <h1 className="text-5xl md:text-6xl font-bold mb-4">
-                Hi, I'm Saeful <span className="inline-block animate-wave">👋</span>
+                Hi, I&apos;m Saeful <span className="inline-block animate-wave">👋</span>
               </h1>
               <p className="text-xl mb-8">
                 Junior software developer, passionate about building simply beautiful and useful products.
@@ -205,8 +202,8 @@ export default function Portfolio() {
               >
                 <h3 className="text-2xl font-bold mb-4">Full Stack Developer based in Bekasi, Indonesia</h3>
                 <p className="text-muted-foreground mb-6">
-                  I'm a passionate developer with expertise in building modern web applications. With over 1 years of
-                  experience, I've worked on a variety of projects from data management website to Finance Software.
+                  I&apos;m a passionate developer with expertise in building modern web applications. With over 1 years of
+                  experience, I&apos;ve worked on a variety of projects from data management website to Finance Software.
                 </p>
                 <p className="text-muted-foreground mb-6">
                 Statically typed, compiled language with simple syntax and a rich standard library, ideal for backend development. I focus on technical excellence and great UX, ensuring the applications I build are both powerful and user-friendly.
@@ -224,7 +221,7 @@ export default function Portfolio() {
                   <Badge>TailwindCSS</Badge>
                 </div>
                 <Button asChild>
-                  <a href="#contact">Let's work together</a>
+                  <a href="#contact">Let&apos;s work together</a>
                 </Button>
               </motion.div>
             </div>
@@ -377,7 +374,7 @@ export default function Portfolio() {
                   name: "Node.js",
                   icon: "logos:nodejs",
                   color: "#339933",
-                  description: "JavaScript runtime built on Chrome's V8 JavaScript engine",
+                  description: "JavaScript runtime built on Chrome&apos;s V8 JavaScript engine",
                 },
                 {
                   name: "Java",
@@ -476,7 +473,7 @@ export default function Portfolio() {
                   </CardContent>
                   <CardFooter>
                     <p className="text-sm text-muted-foreground">
-                      I'm currently available for freelance work and full-time positions.
+                      I&apos;m currently available for freelance work and full-time positions.
                     </p>
                   </CardFooter>
                 </Card>
@@ -491,7 +488,7 @@ export default function Portfolio() {
                 <Card>
                   <CardHeader>
                     <CardTitle>Send Me a Message</CardTitle>
-                    <CardDescription>I'll get back to you as soon as possible</CardDescription>
+                    <CardDescription>I&apos;ll get back to you as soon as possible</CardDescription>
                   </CardHeader>
                   <CardContent>
                     <form className="space-y-4">

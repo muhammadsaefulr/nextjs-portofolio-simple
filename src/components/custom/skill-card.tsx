@@ -1,6 +1,5 @@
 "use client"
 
-import { useEffect, useState } from "react"
 import { motion, useAnimation } from "framer-motion"
 
 interface Skill {
